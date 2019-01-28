@@ -1,1 +1,3 @@
-# Le_L_ImageAnimation
+# This is a repo for images animations
+
+this is my homework
