@@ -18,21 +18,7 @@
 	let dropzones = document.querySelectorAll('.drop-zone');
 
 	//functions og in the middle
-	function createPuzzlePieces(pictureIndex)
-	{
-		//generate images here -> need to make 4 (top left, right, bottom left, right)
-		thePieces.forEach((piece,index) =>{
-			let newPuzzlePiece = `<img id="piece${index}" class="puzzle-image"
-			 src="images/${piece + pictureIndex}.jpg" alt="puzzle piece" draggable>`;
-
-			 piecesBoard.innerHTML += newPuzzlePiece;
-		});
-
-		// debugger;
-
-		initDrag();
-
-	}
+	
 
 	//drag functionality
 	//this is a 3-step process
@@ -50,12 +36,12 @@
 			img.addEventListener("dragstart", function(e){
 				console.log('draggin...');
 				e.dataTransfer.setData("text/plain", this.id);
+				console.log(this.id);
 			});
 		});
 
 
 	}
-
 
 	//drop functionality
 	dropzones.forEach(zone =>{
@@ -64,24 +50,51 @@
 			console.log('dragged over me!')
 		});
 
-		zone.addEventListener("drop", function(e) {
+	zone.addEventListener("drop", function(e) {
 			e.preventDefault();
 			console.log('you dropped something on me');
 
 			let piece = e.dataTransfer.getData("text/plain");
 			e.target.appendChild(document.querySelector(`#${piece}`));
+			
+			
 		})
 	});
 
+
+	function createPuzzlePieces(pictureIndex)
+	{
+		//generate images here -> need to make 4 (top left, right, bottom left, right)
+		thePieces.forEach((piece,index) =>{
+			let newPuzzlePiece = `<img id="piece${index}" class="puzzle-image"
+			 src="images/${piece + pictureIndex}.jpg" alt="puzzle piece" draggable>`;
+
+			 piecesBoard.innerHTML += newPuzzlePiece;
+			 console.log(newPuzzlePiece)
+		});
+
+		// debugger;
+
+		initDrag();
+
+	}
 	function resetPuzzlePieces()
 	{
 		// change the current puzzle, regenerate the pieces
 		//debugger;
 		//clean out the puzzle pieces div
 		piecesBoard.innerHTML = "";
+		createPuzzlePieces(this.dataset.puzzleref); //'this' is puzzleSelectors
 
+
+		
+
+
+		
+		// dropzones.forEach((e) => {e.innerHTML = ""})
 		//generate new pieces
-		createPuzzlePieces(this.dataset.puzzleref);
+		
+
 	}
 
 	//event handling goes here
