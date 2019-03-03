@@ -88,8 +88,13 @@
 
 
 		
-
-
+		//bug fix for reset drop zones
+		dropzones.forEach((e) => {
+			while(e.firstChild)
+			{
+				e.removeChild(e.firstChild)
+			}
+		})
 		
 		// dropzones.forEach((e) => {e.innerHTML = ""})
 		//generate new pieces
