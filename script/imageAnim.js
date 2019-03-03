@@ -55,7 +55,20 @@
 			console.log('you dropped something on me');
 
 			let piece = e.dataTransfer.getData("text/plain");
-			e.target.appendChild(document.querySelector(`#${piece}`));
+			
+
+
+			//bug fix for dropzones
+			
+			if(zone.innerHTML == ""){
+				e.target.appendChild(document.querySelector(`#${piece}`));
+			console.log(zone)
+			}
+			else
+			{
+				e.target.removeChild(document.querySelector(`#${piece}`));
+			console.log(zone)
+			}
 			
 			
 		})
